@@ -260,16 +260,21 @@ function IconsByCategory() {
             </div>
             <div className='text-center'>
                 {!grid ? (<EmptySearch title='icons'/>) : (
-                    grid?.map((group, index) => (
-                            <div key={index}>
-                                <h2>{group.name} ({totalCount})</h2>
-                                <div className='grid'>
-                                    {group.icons.map((icon, index) => (
-                                        <IconCard payload={icon} key={(index + 1)} downloadble={false}/>))}
+                    <>
+                        <h1>Total: {totalCount}</h1>
+                        {grid?.map((group, index) => (<h2 key={index} style={{textTransform: 'capitalize'}}>{group.name} ({group.icons.length})</h2>))}
+                        <hr />
+                        {grid?.map((group, index) => (
+                                <div key={index}>
+                                    <h2>{group.name} ({group.icons.length})</h2>
+                                    <div className='grid'>
+                                        {group.icons.map((icon, index) => (
+                                            <IconCard payload={icon} key={(index + 1)} downloadble={false}/>))}
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    )
+                            )
+                        )}
+                    </>
                 )}
             </div>
         </>
